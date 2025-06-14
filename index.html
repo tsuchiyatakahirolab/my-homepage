@@ -5,53 +5,51 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Coming Soon – Tsuchiya Takahiro</title>
   <style>
-    /* Monochrome & Minimal */
+    /* Monochrome & Minimal - Fit to viewport without scroll */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html, body { height: 100%; width: 100%; }
     body {
       display: flex;
       justify-content: center;
-      align-items: flex-start;
+      align-items: center;
       background: #fff;
       color: #000;
       font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Arial', sans-serif;
       letter-spacing: 0.05em;
       text-transform: uppercase;
-      padding-top: 10vh;
+      overflow: hidden;
     }
     .container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
       text-align: center;
-      max-width: 600px;
+      height: 100vh;
       width: 90%;
+      max-width: 600px;
+      justify-content: space-evenly;
     }
     .logo {
-      display: block;
-      margin: 0 auto 2rem;
-      width: 50vw;
-      max-width: 300px;
-      opacity: 0.85;
+      width: 40vw;
+      max-width: 350px;
+      opacity: 1;
     }
     h1 {
-      font-size: 3rem;
+      font-size: 3.5rem;
       font-weight: 300;
-      margin-bottom: 1rem;
+      letter-spacing: 0.15em;
     }
-    p {
+    .subtext {
       font-size: 1rem;
       font-weight: 400;
-      line-height: 1.6;
-      margin-bottom: 1rem;
+      line-height: 1.4;
     }
     .video-wrapper {
-      margin: 2rem 0;
-      position: relative;
-      width: 100%;
-      padding-top: 56.25%; /* 16:9 Aspect Ratio */
+      width: 60%;
+      max-width: 400px;
+      aspect-ratio: 16/9;
     }
     .video-wrapper video {
-      position: absolute;
-      top: 0;
-      left: 0;
       width: 100%;
       height: 100%;
       outline: none;
@@ -60,41 +58,38 @@
     video::-webkit-media-controls-enclosure { overflow: hidden; }
     video::-webkit-media-controls-panel { width: calc(100% + 30px); }
     .footer {
-      margin-top: 2rem;
       font-size: 0.8rem;
       font-weight: 200;
       opacity: 0.6;
+      letter-spacing: 0.1em;
     }
-    /* Responsive adjustments */
     @media (max-width: 600px) {
-      .container { width: 95%; }
-      .logo { width: 30vw; max-width: 150px; margin-bottom: 1.5rem; }
-      h1 { font-size: 8vw; }
-      p { font-size: 4vw; }
+      .logo { width: 50vw; max-width: 200px; }
+      h1 { font-size: 10vw; }
+      .subtext { font-size: 4vw; }
+      .video-wrapper { width: 80%; max-width: 300px; }
       .footer { font-size: 3vw; }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <!-- ロゴを適度に下げて表示 -->
     <img src="logo.png" alt="Tsuchiya Logo" class="logo">
-
     <h1>Coming Soon</h1>
-    <p>Thank you for visiting the official website of Tsuchiya Takahiro.</p>
-    <p>Professor at Kyoto University of Foreign Studies.</p>
-
-    <!-- 動画埋め込み - ダウンロードさせない設定 -->
+    <div class="subtext">
+      <p>Thank you for visiting the official website of Tsuchiya Takahiro.</p>
+      <p>Professor at Kyoto University of Foreign Studies.</p>
+    </div>
     <div class="video-wrapper">
-      <video controls controlsList="nodownload" preload="metadata" poster="assets/video-poster.jpg">
+      <video controls controlsList="nodownload" preload="metadata" poster="video-poster.jpg">
         <source src="intro.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
     </div>
-
-    <p>Our new website is under construction to showcase my latest research and updates.</p>
-    <p>Stay tuned for the official launch.</p>
-
+    <div class="subtext">
+      <p>Our new website is under construction to showcase my latest research and updates.</p>
+      <p>Stay tuned for the official launch.</p>
+    </div>
     <div class="footer">&copy; 2025 Tsuchiya Takahiro. All rights reserved.</div>
   </div>
 </body>
