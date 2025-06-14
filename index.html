@@ -19,18 +19,24 @@
       text-transform: uppercase;
     }
     .container {
+      position: relative; /* enable absolute positioning for children */
       text-align: center;
       max-width: 600px;
       padding: 2rem;
     }
     .logo {
-      margin-bottom: 2rem;
+      position: absolute;
+      top: 2rem;
+      left: 50%;
+      transform: translateX(-50%);
       max-width: 200px;
       opacity: 0.85;
+      z-index: 10; /* bring to front */
     }
     h1 {
       font-size: 2.5rem;
       font-weight: 300;
+      margin-top: 8rem; /* push down to clear logo overlap */
       margin-bottom: 1.5rem;
     }
     p {
@@ -53,8 +59,8 @@
       height: 100%;
       outline: none;
     }
-    video::-internal-media-controls-download-button { display:none; }
-    video::-webkit-media-controls-enclosure { overflow:hidden; }
+    video::-internal-media-controls-download-button { display: none; }
+    video::-webkit-media-controls-enclosure { overflow: hidden; }
     video::-webkit-media-controls-panel { width: calc(100% + 30px); }
     .footer {
       margin-top: 2rem;
@@ -66,7 +72,7 @@
 </head>
 <body>
   <div class="container">
-    <!-- ロゴを配置 -->
+    <!-- ロゴを最前面に配置 -->
     <img src="logo.png" alt="Tsuchiya Logo" class="logo">
 
     <h1>Coming Soon</h1>
@@ -76,7 +82,7 @@
     <!-- 動画埋め込み - ダウンロードさせない設定 -->
     <div class="video-wrapper">
       <video controls controlsList="nodownload" preload="metadata" poster="assets/video-poster.jpg">
-        <source src="intro.mp4" type="video/mp4">
+        <source src="/intro.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
     </div>
