@@ -5,9 +5,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Coming Soon – Tsuchiya Takahiro</title>
   <style>
-    /* Monochrome & Minimal - Fit to viewport without scroll */
+    /* Monochrome & Minimal - Fit to viewport */
     * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body { height: 100%; width: 100%; }
+    html, body { height: 100%; width: 100%; overflow: hidden; }
     body {
       display: flex;
       justify-content: center;
@@ -17,18 +17,18 @@
       font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Arial', sans-serif;
       letter-spacing: 0.05em;
       text-transform: uppercase;
-      overflow: hidden;
     }
     .container {
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: space-evenly;
       text-align: center;
       height: 100vh;
       width: 90%;
       max-width: 600px;
-      justify-content: space-evenly;
     }
+    /* Inline Base64 ロゴ埋め込み */
     .logo {
       width: 40vw;
       max-width: 350px;
@@ -54,9 +54,6 @@
       height: 100%;
       outline: none;
     }
-    video::-internal-media-controls-download-button { display: none; }
-    video::-webkit-media-controls-enclosure { overflow: hidden; }
-    video::-webkit-media-controls-panel { width: calc(100% + 30px); }
     .footer {
       font-size: 0.8rem;
       font-weight: 200;
@@ -74,25 +71,29 @@
 </head>
 <body>
   <div class="container">
-    <img src="logo.png" alt="Tsuchiya Logo" class="logo">
-    <h1>Coming Soon</h1>
+    <!-- Base64で埋め込んだロゴ -->
+    <img src="data:image/png;base64,INSERT_BASE64_LOGO_HERE" alt="Tsuchiya Logo" class="logo">
+
+    <h1>COMING SOON</h1>
     <div class="subtext">
-      <p>Thank you for visiting</p>
-      <p>the official website of Tsuchiya Takahiro.</p>
-      <p>Professor at Kyoto University of Foreign Studies.</p>
+      <p>THANK YOU FOR VISITING THE OFFICIAL WEBSITE OF TSUCHIYA TAKAHIRO.</p>
+      <p>PROFESSOR AT KYOTO UNIVERSITY OF FOREIGN STUDIES.</p>
     </div>
+
     <div class="video-wrapper">
-      <video controls controlsList="nodownload" preload="metadata" poster="video-poster.jpg">
+      <video controls controlsList="nodownload" preload="metadata" poster="data:image/png;base64,INSERT_BASE64_POSTER_HERE">
         <source src="intro.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
     </div>
+
     <div class="subtext">
-      <p>Our website reflecting his latest research and updates</p>
-      <p>is currently under construction.</p> 
-      <p>Stay tuned for the official launch.</p>
+      <p>OUR NEW WEBSITE IS UNDER CONSTRUCTION TO SHOWCASE</P>
+      <p>HIS LATEST RESEARCH AND ACADEMIC UPDATES.</p>
+      <p>STAY TUNED FOR THE OFFICIAL LAUNCH.</p>
     </div>
-    <div class="footer">&copy; 2025 Tsuchiya Takahiro. All rights reserved.</div>
+
+    <div class="footer">&copy; 2025 TSUCHIYA TAKAHIRO. ALL RIGHTS RESERVED.</div>
   </div>
 </body>
 </html>
