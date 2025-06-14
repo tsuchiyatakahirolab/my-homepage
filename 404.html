@@ -56,4 +56,53 @@
       padding: 0.5rem 1rem;
       display: inline-block;
       transition: background 0.2s, color 0.2s;
-      curso
+      cursor: pointer;
+    }
+    a:hover {
+      background: #000;
+      color: #fff;
+    }
+    .footer {
+      position: absolute;
+      bottom: 1rem;
+      font-size: 0.8rem;
+      font-weight: 200;
+      opacity: 0.6;
+      letter-spacing: 0.1em;
+    }
+    @media (max-width: 600px) {
+      .logo { width: 45vw; max-width: 200px; margin-bottom: 1rem; }
+      h1 { font-size: 20vw; }
+      h2 { font-size: 6vw; }
+      p, a { font-size: 4vw; }
+      .footer { font-size: 3vw; bottom: 0.5rem; }
+      a { padding: 2vw 4vw; }
+    }
+  </style>
+  <script>
+    // 禁止: ロゴへの右クリック／ドラッグ
+    document.addEventListener('contextmenu', e => {
+      if (e.target.classList.contains('logo')) e.preventDefault();
+    });
+    document.addEventListener('dragstart', e => {
+      if (e.target.classList.contains('logo')) e.preventDefault();
+    });
+  </script>
+</head>
+<body>
+  <img
+    src="assets/logo.png"
+    alt="Tsuchiya Logo"
+    class="logo"
+    draggable="false"
+    oncontextmenu="return false;"
+  >
+
+  <h1>404</h1>
+  <h2>Page Not Found</h2>
+  <p>We're sorry, but the page you were looking for doesn't exist.</p>
+  <a href="/">Return to Home</a>
+
+  <div class="footer">© 2025 Tsuchiya Takahiro. All rights reserved.</div>
+</body>
+</html>
