@@ -2,110 +2,58 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Coming Soon – Tsuchiya Takahiro</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>404 Not Found – Tsuchiya Takahiro</title>
   <style>
-    /* Monochrome & Minimal - No Base64, use Canvas */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body { height: 100%; width: 100%; overflow: hidden; }
+    /* Monochrome & Minimal */
+    * {
+      margin: 0; padding: 0; box-sizing: border-box;
+    }
+    html, body {
+      height: 100%; width: 100%; overflow: hidden;
+    }
     body {
       display: flex;
+      flex-direction: column;
       justify-content: center;
       align-items: center;
       background: #fff;
       color: #000;
       font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Arial', sans-serif;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.15em;
       text-transform: uppercase;
+      text-align: center;
       user-select: none;
     }
-    .container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-evenly;
-      text-align: center;
-      height: 100vh;
-      width: 90%;
-      max-width: 600px;
-    }
-    /* Logo via Canvas to prevent direct DL */
-    #logoCanvas {
-      width: 40vw;
-      max-width: 350px;
-      margin-bottom: 2rem;
-      pointer-events: none;
+    .logo {
+      width: 35vw;
+      max-width: 300px;
+      margin-bottom: 1.5rem;
+      cursor: default;
+      -webkit-user-drag: none;
+      user-drag: none;
     }
     h1 {
-      font-size: 3.5rem;
+      font-size: 8rem;
       font-weight: 300;
+      letter-spacing: 0.2em;
+    }
+    h2 {
+      font-size: 2rem;
+      font-weight: 400;
+      margin: 1rem 0;
       letter-spacing: 0.15em;
     }
-    .subtext {
+    p, a {
       font-size: 1rem;
       font-weight: 400;
-      line-height: 1.4;
-    }
-    .video-wrapper {
-      width: 60%;
-      max-width: 400px;
-      aspect-ratio: 16/9;
-    }
-    .video-wrapper video {
-      width: 100%;
-      height: 100%;
-    }
-    .footer {
-      font-size: 0.8rem;
-      font-weight: 200;
-      opacity: 0.6;
+      margin: 0.5rem 0;
       letter-spacing: 0.1em;
-      user-select: none;
     }
-    /* Responsive adjustments */
-    @media (max-width: 600px) {
-      #logoCanvas { width: 50vw; max-width: 200px; }
-      h1 { font-size: 10vw; }
-      .subtext { font-size: 4vw; }
-      .video-wrapper { width: 80%; max-width: 300px; }
-      .footer { font-size: 3vw; }
-    }
-  </style>
-</head>
-<body oncontextmenu="return false;" ondragstart="return false;">
-   <div class="container">
-    <!-- External logo; right-click & drag disabled -->
-    <img src="logo.png" alt="Tsuchiya Logo" class="logo" draggable="false" oncontextmenu="return false;">
-    <h1>Coming Soon</h1>
-    <div class="subtext">
-      <p>Thank you for visiting the official website of Tsuchiya Takahiro.</p>
-      <p>Professor at Kyoto University of Foreign Studies.</p>
-    </div>
-    <div class="video-wrapper">
-      <video controls controlsList="nodownload" preload="metadata" poster="video-poster.jpg">
-        <source src="intro.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
-    </div>
-    <div class="subtext">
-      <p>Our new website is under construction to showcase my latest research and updates.</p>
-      <p>Stay tuned for the official launch.</p>
-    </div>
-    <div class="footer">© 2025 Tsuchiya Takahiro. All rights reserved.</div>
-  </div>
-  <script>
-    const canvas = document.getElementById('logoCanvas');
-    const ctx = canvas.getContext('2d');
-    const img = new Image();
-    img.src = 'assets/logo.png';
-    img.crossOrigin = 'Anonymous';
-    img.onload = () => {
-      const maxWidth = Math.min(window.innerWidth * 0.4, 350);
-      const ratio = img.width / img.height;
-      canvas.width = maxWidth;
-      canvas.height = maxWidth / ratio;
-      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
-    };
-  </script>
-</body>
-</html>
+    a {
+      text-decoration: none;
+      border: 1px solid #000;
+      padding: 0.5rem 1rem;
+      display: inline-block;
+      transition: background 0.2s, color 0.2s;
+      curso
