@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Coming Soon – Tsuchiya Takahiro</title>
   <style>
-    /* Monochrome & Minimal - Fit to viewport */
+    /* Monochrome & Minimal - No Base64, use Canvas */
     * { margin: 0; padding: 0; box-sizing: border-box; }
     html, body { height: 100%; width: 100%; overflow: hidden; }
     body {
@@ -17,6 +17,7 @@
       font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Arial', sans-serif;
       letter-spacing: 0.05em;
       text-transform: uppercase;
+      user-select: none;
     }
     .container {
       display: flex;
@@ -28,11 +29,12 @@
       width: 90%;
       max-width: 600px;
     }
-    /* Inline Base64 ロゴ埋め込み */
-    .logo {
+    /* Logo via Canvas to prevent direct DL */
+    #logoCanvas {
       width: 40vw;
       max-width: 350px;
-      opacity: 1;
+      margin-bottom: 2rem;
+      pointer-events: none;
     }
     h1 {
       font-size: 3.5rem;
@@ -52,16 +54,17 @@
     .video-wrapper video {
       width: 100%;
       height: 100%;
-      outline: none;
     }
     .footer {
       font-size: 0.8rem;
       font-weight: 200;
       opacity: 0.6;
       letter-spacing: 0.1em;
+      user-select: none;
     }
+    /* Responsive adjustments */
     @media (max-width: 600px) {
-      .logo { width: 50vw; max-width: 200px; }
+      #logoCanvas { width: 50vw; max-width: 200px; }
       h1 { font-size: 10vw; }
       .subtext { font-size: 4vw; }
       .video-wrapper { width: 80%; max-width: 300px; }
@@ -69,31 +72,40 @@
     }
   </style>
 </head>
-<body>
+<body oncontextmenu="return false;" ondragstart="return false;">
   <div class="container">
-    <!-- Base64で埋め込んだロゴ -->
-    <img src="data:image/png;base64,INSERT_BASE64_LOGO_HERE" alt="Tsuchiya Logo" class="logo">
-
-    <h1>COMING SOON</h1>
+    <!-- Canvasでロゴを描画 -->
+    <canvas id="logoCanvas"></canvas>
+    <h1>Coming Soon</h1>
     <div class="subtext">
-      <p>THANK YOU FOR VISITING THE OFFICIAL WEBSITE OF TSUCHIYA TAKAHIRO.</p>
-      <p>PROFESSOR AT KYOTO UNIVERSITY OF FOREIGN STUDIES.</p>
+      <p>Thank you for visiting the official website of Tsuchiya Takahiro.</p>
+      <p>Professor at Kyoto University of Foreign Studies.</p>
     </div>
-
     <div class="video-wrapper">
-      <video controls controlsList="nodownload" preload="metadata" poster="data:image/png;base64,INSERT_BASE64_POSTER_HERE">
+      <video controls controlsList="nodownload" preload="metadata" poster="video-poster.jpg">
         <source src="intro.mp4" type="video/mp4">
         Your browser does not support the video tag.
       </video>
     </div>
-
     <div class="subtext">
-      <p>OUR NEW WEBSITE IS UNDER CONSTRUCTION TO SHOWCASE</P>
-      <p>HIS LATEST RESEARCH AND ACADEMIC UPDATES.</p>
-      <p>STAY TUNED FOR THE OFFICIAL LAUNCH.</p>
+      <p>Our new website is under construction to showcase my latest research and updates.</p>
+      <p>Stay tuned for the official launch.</p>
     </div>
-
-    <div class="footer">&copy; 2025 TSUCHIYA TAKAHIRO. ALL RIGHTS RESERVED.</div>
+    <div class="footer">© 2025 Tsuchiya Takahiro. All rights reserved.</div>
   </div>
+  <script>
+    const canvas = document.getElementById('logoCanvas');
+    const ctx = canvas.getContext('2d');
+    const img = new Image();
+    img.src = 'assets/logo.png';
+    img.crossOrigin = 'Anonymous';
+    img.onload = () => {
+      const maxWidth = Math.min(window.innerWidth * 0.4, 350);
+      const ratio = img.width / img.height;
+      canvas.width = maxWidth;
+      canvas.height = maxWidth / ratio;
+      ctx.drawImage(img, 0, 0, canvas.width, canvas.height);
+    };
+  </script>
 </body>
 </html>

@@ -5,89 +5,73 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>404 Not Found – Tsuchiya Takahiro</title>
   <style>
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body { height: 100%; width: 100%; overflow: hidden; }
+    /* Monochrome & Minimal */
+    * { margin:0; padding:0; box-sizing:border-box; }
+    html, body { height:100%; width:100%; overflow:hidden; }
     body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: #fff;
-      color: #000;
-      font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Arial', sans-serif;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
+      display:flex; justify-content:center; align-items:center;
+      background:#fff; color:#000;
+      font-family:-apple-system, BlinkMacSystemFont, 'Helvetica Neue','Arial',sans-serif;
+      letter-spacing:0.1em; text-transform:uppercase;
     }
-    .wrapper {
-      text-align: center;
-      width: 90%;
-      max-width: 600px;
-    }
-    /* インラインロゴ */
-    .logo {
-      display: block;
-      margin: 0 auto 2rem;
-      width: 30vw;
-      max-width: 300px;
-      opacity: 1;
+    .wrapper { text-align:center; width:90%; max-width:600px; }
+    canvas.logo-canvas {
+      display:block; margin:0 auto 2rem;
+      width:30vw; max-width:300px; height:auto;
     }
     h1 {
-      font-size: 8rem;
-      font-weight: 300;
-      letter-spacing: 0.2em;
+      font-size:8rem; font-weight:300; letter-spacing:0.2em;
     }
     h2 {
-      font-size: 2rem;
-      font-weight: 400;
-      margin: 1rem 0;
-      letter-spacing: 0.15em;
+      font-size:2rem; font-weight:400; margin:1rem 0; letter-spacing:0.15em;
     }
     p {
-      font-size: 1rem;
-      font-weight: 400;
-      margin: 1rem 0;
-      line-height: 1.4;
+      font-size:1rem; font-weight:400; margin:1rem 0; line-height:1.4;
     }
     a {
-      display: inline-block;
-      margin-top: 1rem;
-      text-decoration: none;
-      font-weight: 500;
-      letter-spacing: 0.1em;
-      border: 1px solid #000;
-      padding: 0.5rem 1rem;
+      display:inline-block; margin-top:1rem; text-decoration:none;
+      font-weight:500; letter-spacing:0.1em; border:1px solid #000;
+      padding:0.5rem 1rem;
     }
-    a:hover {
-      background: #000;
-      color: #fff;
-    }
+    a:hover { background:#000; color:#fff; }
     .footer {
-      position: absolute;
-      bottom: 2rem;
-      width: 100%;
-      text-align: center;
-      font-size: 0.8rem;
-      opacity: 0.6;
-      letter-spacing: 0.1em;
+      position:absolute; bottom:2rem; width:100%; text-align:center;
+      font-size:0.8rem; opacity:0.6; letter-spacing:0.1em;
     }
-    /* モバイル調整 */
-    @media (max-width: 600px) {
-      .logo { width: 40vw; max-width: 200px; margin-bottom: 1.5rem; }
-      h1 { font-size: 20vw; }
-      h2 { font-size: 6vw; }
-      p { font-size: 4vw; }
-      a { font-size: 4vw; padding: 2vw 4vw; }
-      .footer { font-size: 3vw; bottom: 1.5rem; }
+    @media (max-width:600px) {
+      canvas.logo-canvas { width:40vw; max-width:200px; margin-bottom:1.5rem; }
+      h1 { font-size:20vw; }
+      h2 { font-size:6vw; }
+      p { font-size:4vw; }
+      a { font-size:4vw; padding:2vw 4vw; }
+      .footer { font-size:3vw; bottom:1.5rem; }
     }
   </style>
 </head>
 <body>
   <div class="wrapper">
-    <img src="data:image/png;base64,INSERT_BASE64_LOGO_HERE" alt="Tsuchiya Logo" class="logo">
+    <canvas id="logoCanvas" class="logo-canvas"></canvas>
     <h1>404</h1>
     <h2>Page Not Found</h2>
     <p>We're sorry, but the page you were looking for doesn't exist.</p>
     <a href="/">Return to Home</a>
   </div>
-  <div class="footer">&copy; 2025 TSUCHIYA TAKAHIRO. ALL RIGHTS RESERVED.</div>
+  <div class="footer">© 2025 Tsuchiya Takahiro. All rights reserved.</div>
+  <script>
+    // Disable right-click context menu
+    document.addEventListener('contextmenu', function(e) { e.preventDefault(); }, false);
+    // Load and draw logo into canvas
+    window.addEventListener('load', function() {
+      var canvas = document.getElementById('logoCanvas');
+      var ctx = canvas.getContext('2d');
+      var img = new Image();
+      img.src = 'logo.png';
+      img.onload = function() {
+        canvas.width = img.width;
+        canvas.height = img.height;
+        ctx.drawImage(img, 0, 0);
+      };
+    });
+  </script>
 </body>
 </html>
