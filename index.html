@@ -88,15 +88,23 @@
       text-align: center;
     }
 
+    h1, h2, p.desc {
+      max-width: 100%;
+      word-wrap: break-word;
+      word-break: break-word;
+      hyphens: auto;
+      overflow-wrap: break-word;
+    }
+
     h1 {
-      font-size: clamp(28px, 6vw, 48px);
+      font-size: clamp(24px, 6vw, 42px);
       letter-spacing: 0.2em;
       margin-bottom: 16px;
       font-weight: 400;
     }
 
     h2 {
-      font-size: clamp(16px, 4vw, 24px);
+      font-size: clamp(14px, 5vw, 20px);
       font-weight: 300;
       margin-bottom: 24px;
     }
@@ -106,6 +114,7 @@
       line-height: 1.6;
       margin-bottom: 24px;
       letter-spacing: 0.05em;
+      text-align: center;
     }
 
     .hero-video {
