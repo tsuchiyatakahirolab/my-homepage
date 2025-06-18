@@ -1,112 +1,124 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ja">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Coming Soon – Tsuchiya Takahiro</title>
-  <style>
-    /* Monochrome & Minimal - Fit to viewport */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    html, body { height: 100%; width: 100%; overflow: hidden; }
-    body {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background: #fff;
-      color: #000;
-      font-family: -apple-system, BlinkMacSystemFont, 'Helvetica Neue', 'Arial', sans-serif;
-      letter-spacing: 0.05em;
-      text-transform: uppercase;
-      user-select: none;
-    }
-    .container {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: space-evenly;
-      text-align: center;
-      height: 100vh;
-      width: 90%;
-      max-width: 600px;
-    }
-    /* External logo with download disabled */
-    .logo {
-      width: 40vw;
-      max-width: 350px;
-      pointer-events: none;
-      -webkit-user-drag: none;
-      user-drag: none;
-    }
-    h1 {
-      font-size: 3.5rem;
-      font-weight: 300;
-      letter-spacing: 0.15em;
-    }
-    .subtext {
-      font-size: 1rem;
-      font-weight: 400;
-      line-height: 1.4;
-    }
-    .video-wrapper {
-      width: 60%;
-      max-width: 400px;
-      aspect-ratio: 16/9;
-    }
-    .video-wrapper video {
-      width: 100%;
-      height: 100%;
-      outline: none;
-    }
-    /* Disable download button */
-    .video-wrapper video::-internal-media-controls-download-button { display:none; }
-    .video-wrapper video::-webkit-media-controls-enclosure { overflow:hidden; }
-    .video-wrapper video::-webkit-media-controls-panel { width: calc(100% + 30px); }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tsuchiya Takahiro | Official Site – Coming Soon</title>
 
-    .footer {
-      font-size: 0.8rem;
-      font-weight: 200;
-      opacity: 0.6;
-      letter-spacing: 0.1em;
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@200;300;400;500&family=Noto+Sans+JP:wght@300;400;500&display=swap" rel="stylesheet" />
+
+  <style>
+    :root {
+      --black: #0d0d0d;
+      --white: #ffffff;
+      --gray:  #bfbfbf;
     }
-    @media (max-width: 600px) {
-      .logo { width: 50vw; max-width: 200px; }
-      h1 { font-size: 10vw; }
-      .subtext { font-size: 4vw; }
-      .video-wrapper { width: 80%; max-width: 300px; }
-      .footer { font-size: 3vw; }
+    *{box-sizing:border-box;margin:0;padding:0;}
+    body{
+      font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;
+      color:var(--black);
+      background:var(--white);
+      display:flex;
+      flex-direction:column;
+      min-height:100vh;
+    }
+    header{
+      width:100%;
+      padding:24px 0;
+      display:flex;
+      justify-content:center;
+      border-bottom:1px solid var(--black);
+    }
+    header img{height:42px;}
+    main{
+      flex:1;
+      display:flex;
+      flex-direction:column;
+      align-items:center;
+      justify-content:flex-start;
+      padding:5vh 5vw 10vh;
+      gap:32px;
+      max-width:960px;
+      margin:0 auto;
+    }
+    h1{font-family:"Helvetica Neue", Helvetica, Arial, ,sans-serif;letter-spacing:0.2em;font-size:clamp(28px,4vw,48px);font-weight:400;}
+    h2{font-size:clamp(16px,2vw,24px);font-weight:300;}
+    p.desc{font-size:14px;text-align:center;line-height:1.6;margin-top:8px;letter-spacing:0.05em;}
+    .hero-video{width:100%;max-width:640px;border:1px solid var(--black);}
+    form{
+      margin-top:24px;
+      display:flex;
+      flex-wrap:wrap;
+      justify-content:center;
+      gap:8px;
+    }
+    form input[type="email"]{
+      padding:12px 16px;
+      border:1px solid var(--black);
+      width:260px;
+      font-size:14px;
+    }
+    form button{
+      background:var(--black);
+      color:var(--white);
+      border:none;
+      padding:12px 24px;
+      cursor:pointer;
+      transition:opacity .2s ease;
+      font-size:14px;
+      letter-spacing:0.05em;
+    }
+    form button:hover{opacity:.8;}
+    footer{
+      margin-top:auto;
+      width:100%;
+      text-align:center;
+      font-size:12px;
+      padding:16px 0;
+      border-top:1px solid var(--black);
+    }
+    .sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0;}
+
+    /* スクロールバーを無くしても100%表示に収める */
+    @media (max-height:700px) {
+      main{justify-content:flex-start;padding-top:32px;gap:24px;}
     }
   </style>
+  <!-- 右クリック禁止 -->
   <script>
-    // Disable right-click everywhere
-    document.addEventListener('contextmenu', function(e) { e.preventDefault(); });
+    window.addEventListener('contextmenu', e=>e.preventDefault());
   </script>
 </head>
 <body>
-  <div class="container">
-    <!-- External logo; right-click & drag disabled -->
-    <img src="logo.png" alt="Tsuchiya Logo" class="logo" draggable="false" oncontextmenu="return false;">
+  <header>
+    <img src="logo.png" alt="TSUCHIYA TAKAHIRO ロゴ" />
+  </header>
 
-    <h1>COMING SOON</h1>
-    <div class="subtext">
-      <p>THANK YOU FOR VISITING</p>
-      <p>THE OFFICIAL WEBSITE OF TSUCHIYA TAKAHIRO.</p>
-      <p>PROFESSOR AT KYOTO UNIVERSITY OF FOREIGN STUDIES.</p>
+  <main>
+    <div style="text-align:center">
+      <h1>COMING&nbsp;SOON</h1>
+      <h2>近日公開</h2>
+      <p class="desc">THANK&nbsp;YOU&nbsp;FOR&nbsp;VISITING<br>THE&nbsp;OFFICIAL&nbsp;WEBSITE&nbsp;OF&nbsp;TSUCHIYA&nbsp;TAKAHIRO,<br>PROFESSOR&nbsp;AT&nbsp;KYOTO&nbsp;UNIVERSITY&nbsp;OF&nbsp;FOREIGN&nbsp;STUDIES.</p>
     </div>
 
-    <div class="video-wrapper">
-      <video controls controlsList="nodownload" preload="metadata" poster="video-poster.jpg">
-        <source src="intro.mp4" type="video/mp4">
-        Your browser does not support the video tag.
-      </video>
+    <!-- プロモーション動画（高さ可変）-->
+    <video class="hero-video" src="intro.mp4" controls></video>
+
+    <div style="text-align:center"> 
+      <p class="desc">OUR&nbsp;NEW&nbsp;WEBSITE&nbsp;IS&nbsp;UNDER&nbsp;CONSTRUCTION<br>TO&nbsp;SHOWCASE&nbsp;HIS&nbsp;LATEST&nbsp;RESEARCH&nbsp;AND&nbsp;UPDATES.<br>STAY&nbsp;TUNED&nbsp;FOR&nbsp;THE&nbsp;OFFICIAL&nbsp;LAUNCH.</p>
     </div>
 
-    <div class="subtext">
-      <p>OUR NEW WEBSITE IS UNDER CONSTRUCTION 
-      <p>TO SHOWCASE HIS LATEST RESEARCH AND UPDATES.</p>
-      <p>STAY TUNED FOR THE OFFICIAL LAUNCH.</p>
-    </div>
+    <!-- メール登録フォーム -->
+    <form action="https://formspree.io/f/mnnplnwk" method="POST">
+      <label for="email" class="sr-only">メールアドレス</label>
+      <input id="email" name="email" type="email" placeholder="your@email.com" required>
+      <button type="submit">通知を希望</button>
+    </form>
+  </main>
 
-    <div class="footer">© 2025 TSUCHIYA TAKAHIRO. ALL RIGHTS RESERVED.</div>
-  </div>
+  <footer>
+    © 2025 Tsuchiya Lab. All Rights Reserved.
+  </footer>
 </body>
 </html>
