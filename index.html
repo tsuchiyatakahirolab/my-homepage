@@ -40,7 +40,7 @@
       top: 0;
       left: 0;
       width: 100%;
-      height: 6px; /* 太線 */
+      height: 6px;
       background: var(--black);
       z-index: 999;
     }
@@ -48,7 +48,7 @@
     /* ロゴ固定表示 */
     .logo-bar {
       position: fixed;
-      top: 6px; /* 太線の下に表示 */
+      top: 6px;
       left: 0;
       width: 100%;
       padding: 12px 0;
@@ -56,6 +56,7 @@
       justify-content: center;
       background: var(--white);
       z-index: 998;
+      border-bottom: 1px solid var(--black);
     }
 
     .logo-bar img {
@@ -65,15 +66,13 @@
     .content-wrapper {
       flex: 1;
       display: flex;
-      align-items: center;
       justify-content: center;
-      padding: 120px 5vw 5vw; /* 上のロゴ分マージン */
+      padding: 140px 16px 24px; /* 上のロゴ分 + 左右パディング */
     }
 
     .container {
       max-width: 600px;
       width: 100%;
-      padding: 0; /* 枠線なし */
       text-align: center;
     }
 
@@ -99,7 +98,6 @@
 
     .hero-video {
       width: 100%;
-      max-width: 100%;
       border: 1px solid var(--black);
       margin-bottom: 24px;
     }
@@ -135,17 +133,22 @@
     }
 
     footer {
-      background: var(--black);  /* 白黒反転 */
+      background: var(--black);
       color: var(--white);
       text-align: center;
       font-size: 12px;
-      padding: 16px 0;
+      padding: 16px;
+      flex-shrink: 0;
     }
 
     /* モバイル最適化 */
     @media (max-width: 480px) {
       .content-wrapper {
-        padding: 100px 5vw 5vw; /* スマホ時の上マージン */
+        padding: 120px 12px 24px;
+      }
+
+      .logo-bar img {
+        height: 36px;
       }
     }
   </style>
