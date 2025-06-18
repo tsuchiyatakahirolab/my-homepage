@@ -25,19 +25,25 @@
       padding: 0;
     }
 
-    html, body {
-      height: 100%;
+    html {
       min-height: 100vh;
+      -webkit-text-size-adjust: 100%;
+      overflow-x: hidden;
+    }
+
+    body {
       font-family: "Neue Haas Grotesk", "Helvetica Neue", Helvetica, Arial, sans-serif;
       color: var(--black);
       background: var(--white);
-      display: flex;
-      flex-direction: column;
-      -webkit-text-size-adjust: 100%;
-      overflow-x: hidden; /* ← Safariズレ対策 */
+      overflow-y: auto;
     }
 
-    /* 上の黒い太線（固定ヘッダー） */
+    #page {
+      display: flex;
+      flex-direction: column;
+      min-height: 100vh;
+    }
+
     .top-bar {
       position: fixed;
       top: 0;
@@ -48,7 +54,6 @@
       z-index: 999;
     }
 
-    /* ロゴ固定表示 */
     .logo-bar {
       position: fixed;
       top: 6px;
@@ -71,7 +76,7 @@
       display: flex;
       justify-content: center;
       align-items: flex-start;
-      padding-top: 120px; /* ロゴ高さ分 */
+      padding-top: 120px;
       width: 100%;
     }
 
@@ -150,7 +155,6 @@
       width: 100%;
     }
 
-    /* モバイル最適化 */
     @media (max-width: 480px) {
       .logo-bar img {
         height: 36px;
@@ -163,40 +167,42 @@
   </style>
 </head>
 <body>
-  <div class="top-bar"></div>
+  <div id="page">
+    <div class="top-bar"></div>
 
-  <div class="logo-bar">
-    <img src="logo.png" alt="TSUCHIYA TAKAHIRO ロゴ" />
-  </div>
-
-  <main>
-    <div class="container">
-      <h1>COMING&nbsp;SOON</h1>
-      <h2>近日公開</h2>
-      <p class="desc">
-        THANK&nbsp;YOU&nbsp;FOR&nbsp;VISITING<br />
-        THE&nbsp;OFFICIAL&nbsp;WEBSITE&nbsp;OF&nbsp;TSUCHIYA&nbsp;TAKAHIRO,<br />
-        PROFESSOR&nbsp;AT&nbsp;KYOTO&nbsp;UNIVERSITY&nbsp;OF&nbsp;FOREIGN&nbsp;STUDIES.
-      </p>
-
-      <video class="hero-video" src="intro.mp4" controls></video>
-
-      <p class="desc">
-        OUR&nbsp;NEW&nbsp;WEBSITE&nbsp;IS&nbsp;UNDER&nbsp;CONSTRUCTION<br />
-        TO&nbsp;SHOWCASE&nbsp;HIS&nbsp;LATEST&nbsp;RESEARCH&nbsp;AND&nbsp;UPDATES.<br />
-        STAY&nbsp;TUNED&nbsp;FOR&nbsp;THE&nbsp;OFFICIAL&nbsp;LAUNCH.
-      </p>
-
-      <form action="https://formspree.io/f/mnnplnwk" method="POST">
-        <label for="email" class="sr-only">メールアドレス</label>
-        <input id="email" name="email" type="email" placeholder="your@email.com" required />
-        <button type="submit">通知を希望</button>
-      </form>
+    <div class="logo-bar">
+      <img src="logo.png" alt="TSUCHIYA TAKAHIRO ロゴ" />
     </div>
-  </main>
 
-  <footer>
-    © 2025 Tsuchiya Takahiro. All Rights Reserved.
-  </footer>
+    <main>
+      <div class="container">
+        <h1>COMING&nbsp;SOON</h1>
+        <h2>近日公開</h2>
+        <p class="desc">
+          THANK&nbsp;YOU&nbsp;FOR&nbsp;VISITING<br />
+          THE&nbsp;OFFICIAL&nbsp;WEBSITE&nbsp;OF&nbsp;TSUCHIYA&nbsp;TAKAHIRO,<br />
+          PROFESSOR&nbsp;AT&nbsp;KYOTO&nbsp;UNIVERSITY&nbsp;OF&nbsp;FOREIGN&nbsp;STUDIES.
+        </p>
+
+        <video class="hero-video" src="intro.mp4" controls></video>
+
+        <p class="desc">
+          OUR&nbsp;NEW&nbsp;WEBSITE&nbsp;IS&nbsp;UNDER&nbsp;CONSTRUCTION<br />
+          TO&nbsp;SHOWCASE&nbsp;HIS&nbsp;LATEST&nbsp;RESEARCH&nbsp;AND&nbsp;UPDATES.<br />
+          STAY&nbsp;TUNED&nbsp;FOR&nbsp;THE&nbsp;OFFICIAL&nbsp;LAUNCH.
+        </p>
+
+        <form action="https://formspree.io/f/mnnplnwk" method="POST">
+          <label for="email" class="sr-only">メールアドレス</label>
+          <input id="email" name="email" type="email" placeholder="your@email.com" required />
+          <button type="submit">通知を希望</button>
+        </form>
+      </div>
+    </main>
+
+    <footer>
+      © 2025 Tsuchiya Takahiro. All Rights Reserved.
+    </footer>
+  </div>
 </body>
 </html>
