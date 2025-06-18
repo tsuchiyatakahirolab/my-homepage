@@ -67,12 +67,16 @@
       flex: 1;
       display: flex;
       justify-content: center;
-      padding: 140px 16px 24px; /* 上のロゴ分 + 左右パディング */
+      align-items: flex-start;
+      padding-top: 120px; /* 上のロゴ分 */
+      width: 100%;
     }
 
     .container {
       max-width: 600px;
       width: 100%;
+      margin: 0 auto;
+      padding: 0 16px;
       text-align: center;
     }
 
@@ -138,17 +142,17 @@
       text-align: center;
       font-size: 12px;
       padding: 16px;
-      flex-shrink: 0;
+      width: 100%;
     }
 
     /* モバイル最適化 */
     @media (max-width: 480px) {
-      .content-wrapper {
-        padding: 120px 12px 24px;
-      }
-
       .logo-bar img {
         height: 36px;
+      }
+
+      .content-wrapper {
+        padding-top: 110px;
       }
     }
   </style>
