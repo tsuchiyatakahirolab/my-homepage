@@ -45,20 +45,35 @@
       z-index: 999;
     }
 
+    /* ロゴ固定表示 */
+    .logo-bar {
+      position: fixed;
+      top: 6px; /* 太線の下に表示 */
+      left: 0;
+      width: 100%;
+      padding: 12px 0;
+      display: flex;
+      justify-content: center;
+      background: var(--white);
+      z-index: 998;
+    }
+
+    .logo-bar img {
+      height: 42px;
+    }
+
     .content-wrapper {
       flex: 1;
       display: flex;
       align-items: center;
       justify-content: center;
-      padding: 5vw;
-      margin-top: 6px; /* top-bar分 */
+      padding: 120px 5vw 5vw; /* 上のロゴ分マージン */
     }
 
     .container {
       max-width: 600px;
       width: 100%;
-      padding: 40px 24px;
-      border: 1px solid var(--black);
+      padding: 0; /* 枠線なし */
       text-align: center;
     }
 
@@ -129,14 +144,18 @@
 
     /* モバイル最適化 */
     @media (max-width: 480px) {
-      .container {
-        padding: 24px 16px;
+      .content-wrapper {
+        padding: 100px 5vw 5vw; /* スマホ時の上マージン */
       }
     }
   </style>
 </head>
 <body>
   <div class="top-bar"></div>
+
+  <div class="logo-bar">
+    <img src="logo.png" alt="TSUCHIYA TAKAHIRO ロゴ" />
+  </div>
 
   <div class="content-wrapper">
     <div class="container">
