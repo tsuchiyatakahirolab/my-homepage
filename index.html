@@ -2,7 +2,7 @@
 <html lang="ja">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>Tsuchiya Takahiro | Official Site – Coming Soon</title>
 
   <style>
@@ -25,13 +25,13 @@
       padding: 0;
     }
 
-    body {
+    html, body {
+      height: 100%;
       font-family: "Neue Haas Grotesk", "Helvetica Neue", Helvetica, Arial, sans-serif;
       color: var(--black);
       background: var(--white);
       display: flex;
       flex-direction: column;
-      min-height: 100vh;
     }
 
     /* 上の黒い太線（固定ヘッダー） */
@@ -63,20 +63,22 @@
       height: 42px;
     }
 
-    .content-wrapper {
-      flex: 1;
+    main {
+      flex: 1 0 auto;
       display: flex;
       justify-content: center;
       align-items: flex-start;
-      padding-top: 120px; /* 上のロゴ分 */
+      padding-top: 120px; /* ロゴの高さ分 */
+      padding-left: 16px;
+      padding-right: 16px;
       width: 100%;
+      max-width: 100%;
     }
 
     .container {
       max-width: 600px;
       width: 100%;
       margin: 0 auto;
-      padding: 0 16px;
       text-align: center;
     }
 
@@ -111,6 +113,7 @@
       flex-direction: column;
       gap: 12px;
       align-items: center;
+      margin-bottom: 24px;
     }
 
     form input[type="email"] {
@@ -137,6 +140,7 @@
     }
 
     footer {
+      flex-shrink: 0;
       background: var(--black);
       color: var(--white);
       text-align: center;
@@ -151,7 +155,7 @@
         height: 36px;
       }
 
-      .content-wrapper {
+      main {
         padding-top: 110px;
       }
     }
@@ -164,7 +168,7 @@
     <img src="logo.png" alt="TSUCHIYA TAKAHIRO ロゴ" />
   </div>
 
-  <div class="content-wrapper">
+  <main>
     <div class="container">
       <h1>COMING&nbsp;SOON</h1>
       <h2>近日公開</h2>
@@ -188,7 +192,7 @@
         <button type="submit">通知を希望</button>
       </form>
     </div>
-  </div>
+  </main>
 
   <footer>
     © 2025 Tsuchiya Takahiro. All Rights Reserved.
