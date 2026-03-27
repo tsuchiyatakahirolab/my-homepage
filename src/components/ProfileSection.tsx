@@ -49,10 +49,10 @@ export default function ProfileSection({ lang, theme }: ProfileSectionProps) {
       id="profile"
       className={isDark ? "bg-[#0a0a0a]" : "bg-white"}
     >
-      <div className="mx-auto flex min-h-screen max-w-7xl flex-col items-center justify-center gap-8 px-6 py-16 sm:gap-12 sm:py-24 lg:flex-row lg:gap-20 lg:px-12">
+      <div className="mx-auto flex min-h-screen max-w-7xl flex-col items-center justify-center gap-8 px-6 py-16 sm:gap-12 sm:py-24 lg:flex-row lg:gap-16 lg:px-12 lg:py-12">
         {/* Photo */}
         <div className="relative flex-shrink-0">
-          <div className="relative h-[280px] w-[210px] overflow-hidden sm:h-[400px] sm:w-[300px] lg:h-[500px] lg:w-[380px]">
+          <div className="relative h-[280px] w-[210px] overflow-hidden sm:h-[400px] sm:w-[300px] lg:h-[440px] lg:w-[330px]">
             <Image
               src="/images/profile.jpg"
               alt="TSUCHIYA Takahiro"
@@ -99,24 +99,6 @@ export default function ProfileSection({ lang, theme }: ProfileSectionProps) {
               </>
             )}
           </p>
-
-          <div
-            className="mb-8 space-y-1 text-xs leading-relaxed"
-            style={{ color: "var(--foreground)", opacity: 0.6 }}
-          >
-            <p>
-              {lang === "en"
-                ? "Open Water Scuba Instructor, PADI"
-                : "PADIオープンウォーター・スクーバ・インストラクター"}
-            </p>
-            <p>
-              {lang === "en"
-                ? "Captain, Certified with a First-Class Small Boat Operator License"
-                : "一級小型船舶操縦士"}
-            </p>
-          </div>
-
-          <div className="divider mb-8" />
 
           <h3
             className="mb-4 text-[10px] font-medium tracking-[0.3em] uppercase"
