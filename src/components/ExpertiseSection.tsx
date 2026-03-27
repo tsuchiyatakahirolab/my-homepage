@@ -12,38 +12,32 @@ interface ExpertiseSectionProps {
 
 const AREAS_EN = [
   {
-    title: "APPLIED ECONOMICS",
-    description:
-      "Utilizing economic theories to solve practical problems in global markets.",
-    image: "/images/data-table.jpg",
-  },
-  {
     title: "CHINA STUDIES",
     description:
       "In-depth analysis of socio-political shifts and economic policies within modern China.",
     image: "/images/china-map.png",
   },
   {
+    title: "APPLIED ECONOMICS",
+    description:
+      "Utilizing economic theories to solve practical problems in global markets.",
+    image: "/images/data-table.jpg",
+  },
+  {
     title: "SECURITY STUDIES",
     description:
       "Strategic analysis of national security, defense policy, and international stability.",
-    image: "/images/network.png",
+    image: "/images/architecture.jpg",
   },
   {
     title: "DATA SCIENCE",
     description:
       "Advanced statistical modeling and big data analytics applied to social sciences.",
-    image: "/images/architecture.jpg",
+    image: "/images/network.png",
   },
 ];
 
 const AREAS_JP = [
-  {
-    title: "応用経済学",
-    description:
-      "経済理論を活用し、グローバル市場における実践的な課題を解決する。",
-    image: "/images/data-table.jpg",
-  },
   {
     title: "中国研究",
     description:
@@ -51,16 +45,22 @@ const AREAS_JP = [
     image: "/images/china-map.png",
   },
   {
+    title: "応用経済学",
+    description:
+      "経済理論を活用し、グローバル市場における実践的な課題を解決する。",
+    image: "/images/data-table.jpg",
+  },
+  {
     title: "安全保障学",
     description:
       "国家安全保障、防衛政策、国際的安定性の戦略的分析。",
-    image: "/images/network.png",
+    image: "/images/architecture.jpg",
   },
   {
     title: "データサイエンス",
     description:
       "社会科学に応用する高度な統計モデリングとビッグデータ分析。",
-    image: "/images/architecture.jpg",
+    image: "/images/network.png",
   },
 ];
 

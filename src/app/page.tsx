@@ -12,6 +12,7 @@ import ContactSection from "@/components/ContactSection";
 import VideoSection from "@/components/VideoSection";
 import FooterSection from "@/components/FooterSection";
 import MediaProtection from "@/components/MediaProtection";
+import ScrollIndicator from "@/components/ScrollIndicator";
 
 export type Theme = "white" | "black";
 export type Lang = "en" | "jp";
@@ -59,6 +60,7 @@ export default function Home() {
   return (
     <>
       <MediaProtection />
+      <ScrollIndicator />
       <Header
         lang={lang}
         theme={theme}

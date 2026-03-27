@@ -17,7 +17,7 @@ const KUFS_COURSES_EN = [
   { name: "Applied Economics", lang: "Japanese" },
   { name: "Applied Economics", lang: "English" },
   { name: "Introduction to Data Science", lang: "Japanese" },
-  { name: "Data Science", lang: "Japanese" },
+  { name: "Applied Data Science", lang: "Japanese" },
   { name: "International Relations C", lang: "English" },
   {
     name: "Special Studies in International Relations",
@@ -34,7 +34,7 @@ const KUFS_COURSES_JP = [
   { name: "経済学応用", lang: "日本語" },
   { name: "Applied Economics", lang: "英語" },
   { name: "データサイエンス入門", lang: "日本語" },
-  { name: "データサイエンス", lang: "日本語" },
+  { name: "データサイエンス応用", lang: "日本語" },
   { name: "International Relations C", lang: "英語" },
   {
     name: "国際関係特殊研究",
