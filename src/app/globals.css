@@ -2,25 +2,169 @@
 
 :root {
   --background: #ffffff;
-  --foreground: #171717;
+  --foreground: #1a1a1a;
+  --accent: #888888;
+  --border: #e0e0e0;
+  --surface: #fafafa;
+  --muted: rgba(26, 26, 26, 0.4);
+  --muted-strong: rgba(26, 26, 26, 0.7);
+  --muted-light: rgba(26, 26, 26, 0.3);
+  --overlay: rgba(255, 255, 255, 0.6);
+  --form-focus: #1a1a1a;
+}
+
+[data-theme="dark"] {
+  --background: #0a0a0a;
+  --foreground: #f0f0f0;
+  --accent: #777777;
+  --border: #2a2a2a;
+  --surface: #111111;
+  --muted: rgba(240, 240, 240, 0.4);
+  --muted-strong: rgba(240, 240, 240, 0.7);
+  --muted-light: rgba(240, 240, 240, 0.3);
+  --overlay: rgba(0, 0, 0, 0.6);
+  --form-focus: #f0f0f0;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-accent: var(--accent);
+  --color-border: var(--border);
+  --color-surface: var(--surface);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  --font-serif: var(--font-playfair);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-sans), Arial, Helvetica, sans-serif;
+  overflow-x: hidden;
+  transition: background-color 0.5s ease, color 0.5s ease;
+}
+
+/* Full-page scroll snap */
+.snap-container {
+  height: 100vh;
+  overflow-y: auto;
+  scroll-snap-type: y proximity;
+  scroll-behavior: smooth;
+}
+
+@media (min-width: 1024px) {
+  .snap-container {
+    scroll-snap-type: y mandatory;
+  }
+}
+
+.snap-section {
+  min-height: 100vh;
+  scroll-snap-align: start;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+/* Custom scrollbar - minimal */
+.snap-container::-webkit-scrollbar {
+  width: 3px;
+}
+
+.snap-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.snap-container::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 3px;
+}
+
+/* Video container */
+.video-bg {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  z-index: 0;
+}
+
+.video-bg video,
+.video-bg img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* Serif headings */
+.heading-serif {
+  font-family: var(--font-serif), Georgia, "Times New Roman", serif;
+  letter-spacing: 0.02em;
+}
+
+/* Subtle horizontal rule */
+.divider {
+  width: 60px;
+  height: 1px;
+  background: var(--foreground);
+  opacity: 0.3;
+}
+
+/* Link hover effect */
+.link-underline {
+  position: relative;
+  display: inline-block;
+}
+
+.link-underline::after {
+  content: "";
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  width: 0;
+  height: 1px;
+  background: currentColor;
+  transition: width 0.3s ease;
+}
+
+.link-underline:hover::after {
+  width: 100%;
+}
+
+/* Media protection - prevent easy downloading */
+img,
+video {
+  -webkit-user-drag: none;
+  user-select: none;
+  pointer-events: auto;
+}
+
+img:not(.allow-interact) {
+  pointer-events: none;
+}
+
+/* Contact form */
+.form-input {
+  width: 100%;
+  padding: 0.75rem 0;
+  border: none;
+  border-bottom: 1px solid var(--border);
+  background: transparent;
+  color: var(--foreground);
+  font-size: 0.875rem;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.form-input:focus {
+  border-color: var(--form-focus);
+}
+
+.form-input::placeholder {
+  color: var(--accent);
 }

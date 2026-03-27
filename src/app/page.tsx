@@ -1,65 +1,81 @@
-import Image from "next/image";
+"use client";
+
+import { useState, useEffect } from "react";
+import Header from "@/components/Header";
+import HeroSection from "@/components/HeroSection";
+import ProfileSection from "@/components/ProfileSection";
+import ExpertiseSection from "@/components/ExpertiseSection";
+import ResearchSection from "@/components/ResearchSection";
+import LectureSection from "@/components/LectureSection";
+import AccessSection from "@/components/AccessSection";
+import ContactSection from "@/components/ContactSection";
+import VideoSection from "@/components/VideoSection";
+import FooterSection from "@/components/FooterSection";
+import MediaProtection from "@/components/MediaProtection";
+
+export type Theme = "white" | "black";
+export type Lang = "en" | "jp";
+export type TimeOfDay = "day" | "night";
+
+function getTimeOfDay(): TimeOfDay {
+  const hour = new Date().getHours();
+  // 05:00-00:59 = day, 01:00-04:59 = night
+  if (hour >= 1 && hour <= 4) return "night";
+  return "day";
+}
 
 export default function Home() {
+  const [lang, setLang] = useState<Lang>("en");
+  const [theme, setTheme] = useState<Theme>("white");
+  const [timeOfDay, setTimeOfDay] = useState<TimeOfDay>("day");
+
+  const toggleLang = () => setLang((prev) => (prev === "en" ? "jp" : "en"));
+  const toggleTheme = () =>
+    setTheme((prev) => (prev === "white" ? "black" : "white"));
+
+  useEffect(() => {
+    setTimeOfDay(getTimeOfDay());
+    const interval = setInterval(() => {
+      setTimeOfDay(getTimeOfDay());
+    }, 60000);
+    return () => clearInterval(interval);
+  }, []);
+
+  useEffect(() => {
+    const isDark = theme === "black";
+    const root = document.documentElement;
+    root.setAttribute("data-theme", isDark ? "dark" : "light");
+    root.style.setProperty("--background", isDark ? "#0a0a0a" : "#ffffff");
+    root.style.setProperty("--foreground", isDark ? "#f0f0f0" : "#1a1a1a");
+    root.style.setProperty("--accent", isDark ? "#777777" : "#888888");
+    root.style.setProperty("--border", isDark ? "#2a2a2a" : "#e0e0e0");
+    root.style.setProperty("--surface", isDark ? "#111111" : "#fafafa");
+    root.style.setProperty(
+      "--overlay",
+      isDark ? "rgba(0,0,0,0.6)" : "rgba(255,255,255,0.6)"
+    );
+  }, [theme]);
+
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
+    <>
+      <MediaProtection />
+      <Header
+        lang={lang}
+        theme={theme}
+        onToggleLang={toggleLang}
+        onToggleTheme={toggleTheme}
+      />
+      <main className="snap-container">
+        <HeroSection lang={lang} theme={theme} timeOfDay={timeOfDay} />
+        <ProfileSection lang={lang} theme={theme} />
+        <ExpertiseSection lang={lang} theme={theme} />
+        <ResearchSection lang={lang} theme={theme} />
+        <LectureSection lang={lang} theme={theme} />
+        <VideoSection theme={theme} timeOfDay={timeOfDay} />
+        <AccessSection lang={lang} theme={theme} />
+        <ContactSection lang={lang} theme={theme} />
+        <FooterSection lang={lang} theme={theme} />
       </main>
-    </div>
+    </>
   );
 }

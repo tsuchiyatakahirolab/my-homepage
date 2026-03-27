@@ -36,6 +36,12 @@ yarn-error.log*
 # vercel
 .vercel
 
+# source video copies (originals in public/video/)
+/video/
+
+# claude
+.claude/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
