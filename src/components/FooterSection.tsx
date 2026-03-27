@@ -23,7 +23,7 @@ export default function FooterSection({ lang, theme }: FooterSectionProps) {
   return (
     <footer
       ref={ref}
-      className="relative flex min-h-[50vh] flex-col items-center justify-center px-6 py-24"
+      className="snap-section relative flex flex-col items-center justify-center px-6 py-24"
       style={{ background: footerBg, color: footerText }}
     >
       <motion.div
