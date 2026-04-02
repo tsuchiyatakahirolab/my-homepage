@@ -15,6 +15,7 @@ export async function GET(request: NextRequest) {
       error instanceof Error ? error.message : "Failed to fetch news";
     const isConfig = message.includes("not configured");
 
+    console.error("[/api/news] Error:", message);
     return NextResponse.json(
       {
         success: false,
@@ -22,6 +23,7 @@ export async function GET(request: NextRequest) {
         error: isConfig
           ? "News feed is not configured yet."
           : "Unable to load news at this time.",
+        _debug: message,
       },
       { status: isConfig ? 503 : 500 }
     );
