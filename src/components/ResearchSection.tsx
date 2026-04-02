@@ -36,13 +36,13 @@ export default function ResearchSection({ lang, theme }: ResearchSectionProps) {
       className="snap-section"
       style={{ background: "var(--background)" }}
     >
-      <div className="mx-auto flex w-full min-h-screen max-w-7xl flex-col items-center justify-center px-6 py-16 sm:py-24 lg:flex-row lg:items-center lg:gap-20 lg:px-12">
+      <div className="mx-auto flex w-full min-h-screen max-w-7xl flex-col items-center justify-center px-6 py-10 sm:py-24 lg:flex-row lg:items-center lg:gap-20 lg:px-12">
         {/* Left: decorative area */}
         <motion.div
           initial={{ opacity: 0, x: -30 }}
           animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
           transition={{ duration: 0.8 }}
-          className="relative mb-8 flex aspect-square w-2/3 mx-auto items-center justify-center overflow-hidden sm:w-1/2 lg:mx-0 lg:w-auto lg:mb-0 lg:aspect-auto lg:min-h-[400px] lg:flex-[2]"
+          className="relative mb-4 flex aspect-square w-1/2 mx-auto items-center justify-center overflow-hidden sm:w-1/2 lg:mx-0 lg:w-auto lg:mb-0 lg:aspect-auto lg:min-h-[400px] lg:flex-[2]"
           style={{ background: "var(--surface)" }}
         >
           <div
@@ -58,7 +58,7 @@ export default function ResearchSection({ lang, theme }: ResearchSectionProps) {
           initial={{ opacity: 0, x: 30 }}
           animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="flex-1 w-full lg:flex-[3]"
+          className="w-full lg:flex-[3]"
         >
           <p
             className="mb-2 text-[10px] font-medium tracking-[0.3em] uppercase"
