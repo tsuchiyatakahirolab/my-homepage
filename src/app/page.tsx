@@ -5,6 +5,7 @@ import Header from "@/components/Header";
 import HeroSection from "@/components/HeroSection";
 import ProfileSection from "@/components/ProfileSection";
 import ExpertiseSection from "@/components/ExpertiseSection";
+import LatestNewsSection from "@/components/LatestNewsSection";
 import ResearchSection from "@/components/ResearchSection";
 import LectureSection from "@/components/LectureSection";
 import AccessSection from "@/components/AccessSection";
@@ -71,6 +72,7 @@ export default function Home() {
         <HeroSection lang={lang} theme={theme} timeOfDay={timeOfDay} />
         <ProfileSection lang={lang} theme={theme} />
         <ExpertiseSection lang={lang} theme={theme} />
+        <LatestNewsSection lang={lang} theme={theme} />
         <ResearchSection lang={lang} theme={theme} />
         <LectureSection lang={lang} theme={theme} />
         <VideoSection theme={theme} timeOfDay={timeOfDay} />

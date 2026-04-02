@@ -6,6 +6,7 @@ const SECTIONS = [
   "hero",
   "profile",
   "expertise",
+  "news",
   "research",
   "lecture",
   "video",
