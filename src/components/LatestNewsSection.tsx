@@ -191,7 +191,7 @@ export default function LatestNewsSection({
           initial={{ opacity: 0, x: 30 }}
           animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="relative mt-12 flex aspect-[4/3] w-full max-h-[200px] sm:max-h-[240px] items-center justify-center overflow-hidden sm:aspect-square lg:mt-0 lg:max-h-none lg:aspect-auto lg:min-h-[400px] lg:flex-[2]"
+          className="relative mt-12 flex aspect-square w-2/3 mx-auto items-center justify-center overflow-hidden sm:w-1/2 lg:mx-0 lg:w-auto lg:mt-0 lg:aspect-auto lg:min-h-[400px] lg:flex-[2]"
           style={{ background: "var(--surface)" }}
         >
           <div
