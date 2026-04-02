@@ -14,10 +14,48 @@ export default function ContactSection({ lang, theme }: ContactSectionProps) {
   const ref = useRef<HTMLElement>(null);
   const isInView = useInView(ref, { once: false, amount: 0.3 });
   const [submitted, setSubmitted] = useState(false);
+  const [sending, setSending] = useState(false);
+  const [error, setError] = useState<string | null>(null);
 
-  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setSubmitted(true);
+    setSending(true);
+    setError(null);
+
+    const form = e.currentTarget;
+    const formData = new FormData(form);
+
+    try {
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name: formData.get("name"),
+          email: formData.get("email"),
+          message: formData.get("message"),
+        }),
+      });
+
+      const json = (await res.json()) as { success: boolean; error?: string };
+
+      if (json.success) {
+        setSubmitted(true);
+      } else {
+        setError(
+          lang === "en"
+            ? "Failed to send. Please try again."
+            : "送信に失敗しました。もう一度お試しください。"
+        );
+      }
+    } catch {
+      setError(
+        lang === "en"
+          ? "Failed to send. Please try again."
+          : "送信に失敗しました。もう一度お試しください。"
+      );
+    } finally {
+      setSending(false);
+    }
   };
 
   return (
@@ -140,16 +178,26 @@ export default function ContactSection({ lang, theme }: ContactSectionProps) {
                   }
                 />
               </div>
+              {error && (
+                <p className="text-xs text-red-500">{error}</p>
+              )}
               <button
                 type="submit"
-                className="w-full border py-3 text-xs font-medium tracking-[0.2em] uppercase transition-colors hover:bg-foreground hover:text-background"
+                disabled={sending}
+                className="w-full border py-3 text-xs font-medium tracking-[0.2em] uppercase transition-colors hover:bg-foreground hover:text-background disabled:opacity-40"
                 style={{
                   borderColor: "var(--foreground)",
                   color: "var(--foreground)",
                   background: "transparent",
                 }}
               >
-                {lang === "en" ? "Send" : "送信"}
+                {sending
+                  ? lang === "en"
+                    ? "Sending..."
+                    : "送信中..."
+                  : lang === "en"
+                    ? "Send"
+                    : "送信"}
               </button>
             </form>
           )}

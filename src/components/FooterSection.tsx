@@ -66,7 +66,7 @@ export default function FooterSection({ lang, theme }: FooterSectionProps) {
             style={{ background: footerText, opacity: 0.2 }}
           />
           <a
-            href="https://linkedin.com"
+            href="https://www.linkedin.com/in/takahiro-tsuchiya-524874157/"
             target="_blank"
             rel="noopener noreferrer"
             className="text-[10px] tracking-[0.2em] uppercase transition-colors"
