@@ -46,15 +46,14 @@ export default function ResearchSection({ lang, theme }: ResearchSectionProps) {
           style={{ background: "var(--surface)" }}
         >
           <div
-            className="absolute inset-0 bg-cover bg-center opacity-20"
+            className="absolute inset-0 bg-cover bg-center opacity-80"
             style={{
               backgroundImage: "url(/images/gallery.png)",
-              filter: "grayscale(100%)",
             }}
           />
           <p
             className="heading-serif relative z-10 text-center text-3xl leading-tight lg:text-4xl"
-            style={{ color: "var(--foreground)", opacity: 0.2 }}
+            style={{ color: "#ffffff", opacity: 0.85 }}
           >
             {lang === "en" ? (
               <>

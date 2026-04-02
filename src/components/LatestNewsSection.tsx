@@ -195,14 +195,14 @@ export default function LatestNewsSection({
           style={{ background: "var(--surface)" }}
         >
           <div
-            className="absolute inset-0 bg-cover bg-center opacity-40"
+            className="absolute inset-0 bg-cover bg-center opacity-80"
             style={{
               backgroundImage: "url(/images/bamboo.jpg)",
             }}
           />
           <p
             className="heading-serif relative z-10 text-center text-3xl leading-tight lg:text-4xl"
-            style={{ color: "var(--foreground)", opacity: 0.2 }}
+            style={{ color: "#ffffff", opacity: 0.85 }}
           >
             {lang === "en" ? (
               <>
