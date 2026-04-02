@@ -108,7 +108,7 @@ export default function ResearchSection({ lang, theme }: ResearchSectionProps) {
               : "詳細な業績一覧は以下をご覧ください："}
           </p>
           <a
-            href="https://researchmap.jp/tsuchiyatakahiro"
+            href="https://researchmap.jp/takahirotsuchiya"
             target="_blank"
             rel="noopener noreferrer"
             className="link-underline text-sm font-medium tracking-wide"
