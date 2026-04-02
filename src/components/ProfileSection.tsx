@@ -49,7 +49,7 @@ export default function ProfileSection({ lang, theme }: ProfileSectionProps) {
       id="profile"
       className={isDark ? "bg-[#0a0a0a]" : "bg-white"}
     >
-      <div className="mx-auto flex min-h-screen max-w-7xl flex-col items-center justify-center gap-8 px-6 py-16 sm:gap-12 sm:py-24 lg:flex-row lg:gap-16 lg:px-12 lg:pt-24 lg:pb-12">
+      <div className="mx-auto flex min-h-screen max-w-7xl flex-col items-center justify-center gap-8 px-6 py-16 sm:gap-12 sm:py-24 lg:flex-row lg:gap-12 lg:px-12 lg:pt-20 lg:pb-10">
         {/* Photo */}
         <div className="relative flex-shrink-0">
           <div className="relative h-[280px] w-[210px] overflow-hidden sm:h-[400px] sm:w-[300px] lg:h-[440px] lg:w-[330px]">
@@ -106,21 +106,21 @@ export default function ProfileSection({ lang, theme }: ProfileSectionProps) {
           >
             {lang === "en" ? "Affiliations" : "兼務"}
           </h3>
-          <ul className="space-y-2 text-xs leading-relaxed" style={{ color: "var(--foreground)", opacity: 0.7 }}>
+          <ul className="space-y-1 text-xs leading-normal" style={{ color: "var(--foreground)", opacity: 0.7 }}>
             {affiliations.map((item, i) => (
               <li key={i} className="whitespace-pre-line">{item}</li>
             ))}
           </ul>
 
-          <div className="divider mb-8 mt-8" />
+          <div className="divider mb-5 mt-5" />
 
           <h3
-            className="mb-4 text-[10px] font-medium tracking-[0.3em] uppercase"
+            className="mb-3 text-[10px] font-medium tracking-[0.3em] uppercase"
             style={{ color: "var(--foreground)", opacity: 0.4 }}
           >
             {lang === "en" ? "Degrees" : "学位"}
           </h3>
-          <ul className="space-y-2 text-xs leading-relaxed" style={{ color: "var(--foreground)", opacity: 0.7 }}>
+          <ul className="space-y-1 text-xs leading-normal" style={{ color: "var(--foreground)", opacity: 0.7 }}>
             {degrees.map((item, i) => (
               <li key={i}>{item}</li>
             ))}
