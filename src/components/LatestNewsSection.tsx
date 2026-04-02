@@ -197,7 +197,7 @@ export default function LatestNewsSection({
           <div
             className="absolute inset-0 bg-cover bg-center opacity-20"
             style={{
-              backgroundImage: "url(/images/gallery.png)",
+              backgroundImage: "url(/images/bamboo.jpg)",
               filter: "grayscale(100%)",
             }}
           />

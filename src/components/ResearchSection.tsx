@@ -48,7 +48,7 @@ export default function ResearchSection({ lang, theme }: ResearchSectionProps) {
           <div
             className="absolute inset-0 bg-cover bg-center opacity-20"
             style={{
-              backgroundImage: "url(/images/network.png)",
+              backgroundImage: "url(/images/gallery.png)",
               filter: "grayscale(100%)",
             }}
           />
