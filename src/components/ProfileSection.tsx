@@ -49,7 +49,7 @@ export default function ProfileSection({ lang, theme }: ProfileSectionProps) {
       id="profile"
       className={isDark ? "bg-[#0a0a0a]" : "bg-white"}
     >
-      <div className="mx-auto flex min-h-screen max-w-7xl flex-col items-center justify-center gap-8 px-6 py-16 sm:gap-12 sm:py-24 lg:flex-row lg:gap-16 lg:px-12 lg:py-12">
+      <div className="mx-auto flex min-h-screen max-w-7xl flex-col items-center justify-center gap-8 px-6 py-16 sm:gap-12 sm:py-24 lg:flex-row lg:gap-16 lg:px-12 lg:pt-24 lg:pb-12">
         {/* Photo */}
         <div className="relative flex-shrink-0">
           <div className="relative h-[280px] w-[210px] overflow-hidden sm:h-[400px] sm:w-[300px] lg:h-[440px] lg:w-[330px]">
