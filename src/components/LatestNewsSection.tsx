@@ -200,24 +200,6 @@ export default function LatestNewsSection({
               backgroundImage: "url(/images/bamboo.jpg)",
             }}
           />
-          <p
-            className="heading-serif relative z-10 text-center text-3xl leading-tight lg:text-4xl"
-            style={{ color: "#ffffff", opacity: 0.85 }}
-          >
-            {lang === "en" ? (
-              <>
-                Latest
-                <br />
-                News
-              </>
-            ) : (
-              <>
-                最新
-                <br />
-                情報
-              </>
-            )}
-          </p>
         </motion.div>
       </div>
     </section>

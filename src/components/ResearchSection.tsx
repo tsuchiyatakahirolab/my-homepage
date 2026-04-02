@@ -51,28 +51,6 @@ export default function ResearchSection({ lang, theme }: ResearchSectionProps) {
               backgroundImage: "url(/images/gallery.png)",
             }}
           />
-          <p
-            className="heading-serif relative z-10 text-center text-3xl leading-tight lg:text-4xl"
-            style={{ color: "#ffffff", opacity: 0.85 }}
-          >
-            {lang === "en" ? (
-              <>
-                Research
-                <br />
-                &amp;
-                <br />
-                Publications
-              </>
-            ) : (
-              <>
-                研究
-                <br />
-                &amp;
-                <br />
-                業績
-              </>
-            )}
-          </p>
         </motion.div>
 
         {/* Right: content */}
