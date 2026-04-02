@@ -53,10 +53,11 @@ body {
 /* Full-page scroll snap */
 .snap-container {
   height: 100vh;
-  overflow-y: auto;
+  overflow-y: scroll;
   overflow-x: hidden;
   scroll-snap-type: y proximity;
   scroll-behavior: smooth;
+  scrollbar-gutter: stable;
 }
 
 @media (min-width: 1024px) {
