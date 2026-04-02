@@ -63,7 +63,7 @@ export default function AccessSection({ lang, theme }: AccessSectionProps) {
           >
             {lang === "en" ? "Access" : "アクセス"}
           </p>
-          <h2 className="heading-serif mb-8 text-2xl lg:text-3xl">
+          <h2 className="heading-serif mb-8 text-2xl lg:text-3xl lg:whitespace-nowrap">
             {lang === "en"
               ? "Kyoto University of Foreign Studies"
               : "京都外国語大学"}
