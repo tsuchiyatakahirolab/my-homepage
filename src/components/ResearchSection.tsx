@@ -42,7 +42,7 @@ export default function ResearchSection({ lang, theme }: ResearchSectionProps) {
           initial={{ opacity: 0, x: -30 }}
           animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
           transition={{ duration: 0.8 }}
-          className="relative mb-8 flex aspect-[4/3] w-full flex-1 items-center justify-center overflow-hidden sm:aspect-square lg:mb-0 lg:aspect-auto lg:min-h-[400px]"
+          className="relative mb-8 flex aspect-[4/3] w-full items-center justify-center overflow-hidden sm:aspect-square lg:mb-0 lg:aspect-auto lg:min-h-[400px] lg:flex-[2]"
           style={{ background: "var(--surface)" }}
         >
           <div
@@ -58,7 +58,7 @@ export default function ResearchSection({ lang, theme }: ResearchSectionProps) {
           initial={{ opacity: 0, x: 30 }}
           animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="flex-1 lg:max-w-lg"
+          className="flex-1 lg:flex-[3]"
         >
           <p
             className="mb-2 text-[10px] font-medium tracking-[0.3em] uppercase"

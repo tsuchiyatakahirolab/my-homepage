@@ -10,7 +10,7 @@ interface ProfileSectionProps {
 }
 
 const AFFILIATIONS_EN = [
-  "Visiting Senior Researcher, Research Center for Advanced Science and Technology, The University of Tokyo",
+  "Visiting Senior Researcher, Research Center for Advanced Science and Technology,\nThe University of Tokyo",
   "Senior Researcher, Keio Research Institute at SFC, Keio University",
   "Visiting Professor, Center for Strategic and Japan Studies, Kaetsu University",
   "Part-time Lecturer, Doshisha University",
@@ -108,7 +108,7 @@ export default function ProfileSection({ lang, theme }: ProfileSectionProps) {
           </h3>
           <ul className="space-y-2 text-xs leading-relaxed" style={{ color: "var(--foreground)", opacity: 0.7 }}>
             {affiliations.map((item, i) => (
-              <li key={i}>{item}</li>
+              <li key={i} className="whitespace-pre-line">{item}</li>
             ))}
           </ul>
 

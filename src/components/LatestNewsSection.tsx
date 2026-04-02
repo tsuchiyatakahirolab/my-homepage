@@ -75,7 +75,7 @@ export default function LatestNewsSection({
           initial={{ opacity: 0, x: -30 }}
           animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
           transition={{ duration: 0.8 }}
-          className="flex-1 lg:max-w-lg"
+          className="flex-1 lg:flex-[3]"
         >
           <p
             className="mb-2 text-[10px] font-medium tracking-[0.3em] uppercase"
@@ -87,7 +87,7 @@ export default function LatestNewsSection({
             Latest News
           </h2>
           <p
-            className="mb-8 text-sm leading-relaxed"
+            className="mb-8 text-sm leading-relaxed lg:whitespace-nowrap"
             style={{ color: "var(--foreground)", opacity: 0.6 }}
           >
             {lang === "en"
@@ -191,7 +191,7 @@ export default function LatestNewsSection({
           initial={{ opacity: 0, x: 30 }}
           animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: 30 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="relative mt-12 flex aspect-[4/3] w-full flex-1 items-center justify-center overflow-hidden sm:aspect-square lg:mt-0 lg:aspect-auto lg:min-h-[400px]"
+          className="relative mt-12 flex aspect-[4/3] w-full items-center justify-center overflow-hidden sm:aspect-square lg:mt-0 lg:aspect-auto lg:min-h-[400px] lg:flex-[2]"
           style={{ background: "var(--surface)" }}
         >
           <div

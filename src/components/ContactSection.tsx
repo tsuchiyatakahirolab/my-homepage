@@ -27,13 +27,13 @@ export default function ContactSection({ lang, theme }: ContactSectionProps) {
       className="snap-section"
       style={{ background: "var(--surface)" }}
     >
-      <div className="mx-auto flex min-h-screen max-w-7xl flex-col items-center justify-center gap-10 px-6 py-16 sm:gap-16 sm:py-24 lg:flex-row lg:gap-20 lg:px-12">
+      <div className="mx-auto flex w-full min-h-screen max-w-7xl flex-col items-center justify-center gap-10 px-6 py-16 sm:gap-16 sm:py-24 lg:flex-row lg:gap-20 lg:px-12">
         {/* Left: info */}
         <motion.div
           initial={{ opacity: 0, x: -30 }}
           animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
           transition={{ duration: 0.8 }}
-          className="max-w-sm"
+          className="max-w-sm lg:max-w-md"
         >
           <p
             className="mb-2 text-[10px] font-medium tracking-[0.3em] uppercase"
@@ -46,11 +46,11 @@ export default function ContactSection({ lang, theme }: ContactSectionProps) {
           </h2>
           <div className="divider mb-8" />
           <p
-            className="mb-6 text-xs leading-relaxed"
+            className="mb-6 text-xs leading-relaxed lg:whitespace-pre-line"
             style={{ color: "var(--foreground)", opacity: 0.6 }}
           >
             {lang === "en"
-              ? "For demos, quotes, or co-development, reach out via email or form. Typically replies within 48 hours."
+              ? <>For demos, quotes, or co-development,<br className="hidden lg:inline" /> reach out via email or form.<br className="hidden lg:inline" /> Typically replies within 48 hours.</>
               : "共同研究、講演依頼、取材等のお問い合わせは、メールまたはフォームよりご連絡ください。通常48時間以内にご返信いたします。"}
           </p>
           <p className="mb-4 text-sm" style={{ color: "var(--foreground)", opacity: 0.8 }}>
