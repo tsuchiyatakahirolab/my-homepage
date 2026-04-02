@@ -12,15 +12,13 @@ export interface NewsItem {
   id: string;
   title: string;
   date: string;
-  category: string;
-  outlet: string;
-  url: string | null;
-  summary: string;
-  language: string;
+  outlet_en: string;
+  outlet_ja: string;
+  url_en: string | null;
+  url_ja: string | null;
   showOnHome: boolean;
   published: boolean;
   sortOrder: number;
-  featured: boolean;
 }
 
 /* ══════════════════════════════════════════
@@ -35,32 +33,17 @@ function getNotionClient(): Client {
   return new Client({ auth: token });
 }
 
-/**
- * Resolve the data source ID.
- *
- * Priority:
- *   1. NOTION_DATA_SOURCE_ID (preferred, maps directly to dataSources.query)
- *   2. NOTION_DATABASE_ID    (legacy / convenience — we run a one-time
- *      discovery step to retrieve the data_source_id from the database)
- *
- * The Notion SDK v5 API operates on data sources, not databases.
- * If only a database ID is provided, we call databases.retrieve() once
- * and extract the corresponding data_source_id from it.
- */
 let resolvedDataSourceId: string | undefined;
 
 async function getDataSourceId(notion: Client): Promise<string> {
-  // Already resolved in this process
   if (resolvedDataSourceId) return resolvedDataSourceId;
 
-  // Prefer NOTION_DATA_SOURCE_ID
   const dsId = process.env.NOTION_DATA_SOURCE_ID;
   if (dsId) {
     resolvedDataSourceId = dsId;
     return dsId;
   }
 
-  // Fallback: resolve from NOTION_DATABASE_ID via discovery
   const dbId = process.env.NOTION_DATABASE_ID;
   if (!dbId) {
     throw new Error(
@@ -68,21 +51,28 @@ async function getDataSourceId(notion: Client): Promise<string> {
     );
   }
 
-  // Discovery step: retrieve the database to get its data_source_id.
-  // In Notion SDK v5, a database object contains an `id` that can be
-  // used as data_source_id when the database IS the data source.
-  // For original databases (not linked), the database ID and
-  // data source ID are the same.
   resolvedDataSourceId = dbId;
   return dbId;
 }
 
 /* ══════════════════════════════════════════
    Property Extractors
+   ══════════════════════════════════════════
+
+   Actual Notion schema:
+     Type        (title)  — headline
+     Date        (date)   — publication date
+     Published   (select) — "TRUE" when published
+     ShowOnHome  (select) — "TRUE" / "FALSE"
+     Outlet_en   (text)   — English outlet name
+     Outlet_ja   (text)   — Japanese outlet name
+     URL_en      (url)    — English link
+     URL_ja      (url)    — Japanese link
+     SortOrder   (number) — manual sort tiebreaker
    ══════════════════════════════════════════ */
 
 function extractTitle(page: PageObjectResponse): string {
-  const prop = page.properties["Title"];
+  const prop = page.properties["Type"];
   if (prop?.type === "title") {
     return prop.title.map((t) => t.plain_text).join("");
   }
@@ -97,12 +87,16 @@ function extractDate(page: PageObjectResponse): string {
   return "";
 }
 
-function extractSelect(page: PageObjectResponse, key: string): string {
+function extractSelectEquals(
+  page: PageObjectResponse,
+  key: string,
+  value: string
+): boolean {
   const prop = page.properties[key];
   if (prop?.type === "select" && prop.select) {
-    return prop.select.name;
+    return prop.select.name === value;
   }
-  return "";
+  return false;
 }
 
 function extractRichText(page: PageObjectResponse, key: string): string {
@@ -113,20 +107,12 @@ function extractRichText(page: PageObjectResponse, key: string): string {
   return "";
 }
 
-function extractUrl(page: PageObjectResponse): string | null {
-  const prop = page.properties["URL"];
+function extractUrl(page: PageObjectResponse, key: string): string | null {
+  const prop = page.properties[key];
   if (prop?.type === "url") {
     return prop.url;
   }
   return null;
-}
-
-function extractCheckbox(page: PageObjectResponse, key: string): boolean {
-  const prop = page.properties[key];
-  if (prop?.type === "checkbox") {
-    return prop.checkbox;
-  }
-  return false;
 }
 
 function extractNumber(page: PageObjectResponse, key: string): number {
@@ -146,15 +132,13 @@ function mapPageToNewsItem(page: PageObjectResponse): NewsItem {
     id: page.id,
     title: extractTitle(page),
     date: extractDate(page),
-    category: extractSelect(page, "Category"),
-    outlet: extractRichText(page, "Outlet"),
-    url: extractUrl(page),
-    summary: extractRichText(page, "Summary"),
-    language: extractSelect(page, "Language"),
-    showOnHome: extractCheckbox(page, "ShowOnHome"),
-    published: extractCheckbox(page, "Published"),
+    outlet_en: extractRichText(page, "Outlet_en"),
+    outlet_ja: extractRichText(page, "Outlet_ja"),
+    url_en: extractUrl(page, "URL_en"),
+    url_ja: extractUrl(page, "URL_ja"),
+    showOnHome: extractSelectEquals(page, "ShowOnHome", "TRUE"),
+    published: extractSelectEquals(page, "Published", "TRUE"),
     sortOrder: extractNumber(page, "SortOrder"),
-    featured: extractCheckbox(page, "Featured"),
   };
 }
 
@@ -168,9 +152,12 @@ function extractPages(
 
 /* ══════════════════════════════════════════
    Queries (dataSources.query)
+
+   Published and ShowOnHome are select properties
+   with value "TRUE", not checkboxes.
    ══════════════════════════════════════════ */
 
-/** Homepage: Published + ShowOnHome, top 3 */
+/** Homepage: Published="TRUE" + ShowOnHome="TRUE", top 3 */
 export async function fetchHomeNews(): Promise<NewsItem[]> {
   const notion = getNotionClient();
   const dataSourceId = await getDataSourceId(notion);
@@ -179,8 +166,8 @@ export async function fetchHomeNews(): Promise<NewsItem[]> {
     data_source_id: dataSourceId,
     filter: {
       and: [
-        { property: "Published", checkbox: { equals: true } },
-        { property: "ShowOnHome", checkbox: { equals: true } },
+        { property: "Published", select: { equals: "TRUE" } },
+        { property: "ShowOnHome", select: { equals: "TRUE" } },
       ],
     },
     sorts: [
@@ -193,7 +180,7 @@ export async function fetchHomeNews(): Promise<NewsItem[]> {
   return extractPages(response).map(mapPageToNewsItem);
 }
 
-/** Archive: all Published items, paginated */
+/** Archive: all Published="TRUE" items, paginated */
 export async function fetchAllNews(): Promise<NewsItem[]> {
   const notion = getNotionClient();
   const dataSourceId = await getDataSourceId(notion);
@@ -206,7 +193,7 @@ export async function fetchAllNews(): Promise<NewsItem[]> {
       data_source_id: dataSourceId,
       filter: {
         property: "Published",
-        checkbox: { equals: true },
+        select: { equals: "TRUE" },
       },
       sorts: [
         { property: "Date", direction: "descending" },

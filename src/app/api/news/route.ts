@@ -23,7 +23,6 @@ export async function GET(request: NextRequest) {
         error: isConfig
           ? "News feed is not configured yet."
           : "Unable to load news at this time.",
-        _debug: message,
       },
       { status: isConfig ? 503 : 500 }
     );

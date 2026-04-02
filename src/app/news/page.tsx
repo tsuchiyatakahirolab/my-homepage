@@ -8,10 +8,10 @@ interface NewsItem {
   id: string;
   title: string;
   date: string;
-  category: string;
-  outlet: string;
-  url: string | null;
-  summary: string;
+  outlet_en: string;
+  outlet_ja: string;
+  url_en: string | null;
+  url_ja: string | null;
 }
 
 export default function NewsArchive() {
@@ -21,7 +21,6 @@ export default function NewsArchive() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
   const [yearFilter, setYearFilter] = useState("");
-  const [categoryFilter, setCategoryFilter] = useState("");
 
   /* Restore persisted preferences */
   useEffect(() => {
@@ -75,17 +74,12 @@ export default function NewsArchive() {
     )
   ).sort((a, b) => b - a);
 
-  const categories = Array.from(
-    new Set(items.map((i) => i.category).filter(Boolean))
-  ).sort();
-
   /* Apply filters */
   const filtered = items.filter((item) => {
     if (yearFilter && item.date) {
       if (new Date(item.date).getFullYear().toString() !== yearFilter)
         return false;
     }
-    if (categoryFilter && item.category !== categoryFilter) return false;
     return true;
   });
 
@@ -97,6 +91,16 @@ export default function NewsArchive() {
       day: "numeric",
     });
   };
+
+  const getOutlet = (item: NewsItem): string =>
+    lang === "jp"
+      ? item.outlet_ja || item.outlet_en
+      : item.outlet_en || item.outlet_ja;
+
+  const getUrl = (item: NewsItem): string | null =>
+    lang === "jp"
+      ? item.url_ja || item.url_en
+      : item.url_en || item.url_ja;
 
   return (
     <div
@@ -203,26 +207,6 @@ export default function NewsArchive() {
                 </option>
               ))}
             </select>
-
-            <select
-              value={categoryFilter}
-              onChange={(e) => setCategoryFilter(e.target.value)}
-              aria-label="Filter by category"
-              className="rounded-none border-b bg-transparent px-1 py-1.5 text-xs font-medium tracking-wide outline-none"
-              style={{
-                borderColor: "var(--border)",
-                color: "var(--foreground)",
-              }}
-            >
-              <option value="">
-                {lang === "en" ? "All categories" : "すべての区分"}
-              </option>
-              {categories.map((c) => (
-                <option key={c} value={c}>
-                  {c}
-                </option>
-              ))}
-            </select>
           </motion.div>
         )}
 
@@ -254,70 +238,57 @@ export default function NewsArchive() {
           </p>
         ) : (
           <ul>
-            {filtered.map((item, i) => (
-              <motion.li
-                key={item.id}
-                initial={{ opacity: 0, y: 10 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.4, delay: 0.05 * Math.min(i, 10) }}
-                className="border-b py-5 first:border-t"
-                style={{ borderColor: "var(--border)" }}
-              >
-                <div className="mb-1 flex flex-wrap items-center gap-2">
-                  <time
-                    dateTime={item.date}
-                    className="text-[11px] tabular-nums tracking-wide"
-                    style={{ color: "var(--foreground)", opacity: 0.4 }}
-                  >
-                    {formatDate(item.date)}
-                  </time>
-                  {item.category && (
-                    <span
-                      className="rounded-full border px-2 py-0.5 text-[10px] font-medium tracking-[0.15em] uppercase"
-                      style={{
-                        borderColor: "var(--border)",
-                        color: "var(--foreground)",
-                        opacity: 0.5,
-                      }}
-                    >
-                      {item.category}
-                    </span>
-                  )}
-                </div>
-                <div className="flex flex-wrap items-baseline gap-2">
-                  {item.url ? (
-                    <a
-                      href={item.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="link-underline text-sm font-medium leading-relaxed"
-                    >
-                      {item.title}
-                    </a>
-                  ) : (
-                    <span className="text-sm font-medium leading-relaxed">
-                      {item.title}
-                    </span>
-                  )}
-                  {item.outlet && (
-                    <span
-                      className="text-xs"
+            {filtered.map((item, i) => {
+              const outlet = getOutlet(item);
+              const url = getUrl(item);
+              return (
+                <motion.li
+                  key={item.id}
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{
+                    duration: 0.4,
+                    delay: 0.05 * Math.min(i, 10),
+                  }}
+                  className="border-b py-5 first:border-t"
+                  style={{ borderColor: "var(--border)" }}
+                >
+                  <div className="mb-1 flex flex-wrap items-center gap-2">
+                    <time
+                      dateTime={item.date}
+                      className="text-[11px] tabular-nums tracking-wide"
                       style={{ color: "var(--foreground)", opacity: 0.4 }}
                     >
-                      — {item.outlet}
-                    </span>
-                  )}
-                </div>
-                {item.summary && (
-                  <p
-                    className="mt-1 max-w-2xl text-xs leading-relaxed"
-                    style={{ color: "var(--foreground)", opacity: 0.5 }}
-                  >
-                    {item.summary}
-                  </p>
-                )}
-              </motion.li>
-            ))}
+                      {formatDate(item.date)}
+                    </time>
+                  </div>
+                  <div className="flex flex-wrap items-baseline gap-2">
+                    {url ? (
+                      <a
+                        href={url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="link-underline text-sm font-medium leading-relaxed"
+                      >
+                        {item.title}
+                      </a>
+                    ) : (
+                      <span className="text-sm font-medium leading-relaxed">
+                        {item.title}
+                      </span>
+                    )}
+                    {outlet && (
+                      <span
+                        className="text-xs"
+                        style={{ color: "var(--foreground)", opacity: 0.4 }}
+                      >
+                        — {outlet}
+                      </span>
+                    )}
+                  </div>
+                </motion.li>
+              );
+            })}
           </ul>
         )}
       </main>

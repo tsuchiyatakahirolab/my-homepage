@@ -14,10 +14,10 @@ interface NewsItem {
   id: string;
   title: string;
   date: string;
-  category: string;
-  outlet: string;
-  url: string | null;
-  summary: string;
+  outlet_en: string;
+  outlet_ja: string;
+  url_en: string | null;
+  url_ja: string | null;
 }
 
 export default function LatestNewsSection({
@@ -56,6 +56,12 @@ export default function LatestNewsSection({
     });
   };
 
+  const getOutlet = (item: NewsItem): string =>
+    lang === "jp" ? item.outlet_ja || item.outlet_en : item.outlet_en || item.outlet_ja;
+
+  const getUrl = (item: NewsItem): string | null =>
+    lang === "jp" ? item.url_ja || item.url_en : item.url_en || item.url_ja;
+
   return (
     <section
       ref={ref}
@@ -92,72 +98,64 @@ export default function LatestNewsSection({
           {/* News items */}
           {loaded && items.length > 0 ? (
             <ul className="mb-8 space-y-0">
-              {items.map((item, i) => (
-                <motion.li
-                  key={item.id}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={
-                    isInView
-                      ? { opacity: 1, x: 0 }
-                      : { opacity: 0, x: -20 }
-                  }
-                  transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
-                  className="border-b py-4 first:border-t"
-                  style={{ borderColor: "var(--border)" }}
-                >
-                  <div className="mb-1 flex flex-wrap items-center gap-2">
-                    <time
-                      dateTime={item.date}
-                      className="text-[11px] tabular-nums tracking-wide"
-                      style={{
-                        color: "var(--foreground)",
-                        opacity: 0.4,
-                      }}
-                    >
-                      {formatDate(item.date)}
-                    </time>
-                    {item.category && (
-                      <span
-                        className="rounded-full border px-2 py-0.5 text-[10px] font-medium tracking-[0.15em] uppercase"
-                        style={{
-                          borderColor: "var(--border)",
-                          color: "var(--foreground)",
-                          opacity: 0.5,
-                        }}
-                      >
-                        {item.category}
-                      </span>
-                    )}
-                  </div>
-                  <div className="flex flex-wrap items-baseline gap-2">
-                    {item.url ? (
-                      <a
-                        href={item.url}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="link-underline text-sm font-medium leading-relaxed"
-                      >
-                        {item.title}
-                      </a>
-                    ) : (
-                      <span className="text-sm font-medium leading-relaxed">
-                        {item.title}
-                      </span>
-                    )}
-                    {item.outlet && (
-                      <span
-                        className="text-xs"
+              {items.map((item, i) => {
+                const outlet = getOutlet(item);
+                const url = getUrl(item);
+                return (
+                  <motion.li
+                    key={item.id}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={
+                      isInView
+                        ? { opacity: 1, x: 0 }
+                        : { opacity: 0, x: -20 }
+                    }
+                    transition={{ duration: 0.5, delay: 0.3 + i * 0.1 }}
+                    className="border-b py-4 first:border-t"
+                    style={{ borderColor: "var(--border)" }}
+                  >
+                    <div className="mb-1 flex flex-wrap items-center gap-2">
+                      <time
+                        dateTime={item.date}
+                        className="text-[11px] tabular-nums tracking-wide"
                         style={{
                           color: "var(--foreground)",
                           opacity: 0.4,
                         }}
                       >
-                        — {item.outlet}
-                      </span>
-                    )}
-                  </div>
-                </motion.li>
-              ))}
+                        {formatDate(item.date)}
+                      </time>
+                    </div>
+                    <div className="flex flex-wrap items-baseline gap-2">
+                      {url ? (
+                        <a
+                          href={url}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="link-underline text-sm font-medium leading-relaxed"
+                        >
+                          {item.title}
+                        </a>
+                      ) : (
+                        <span className="text-sm font-medium leading-relaxed">
+                          {item.title}
+                        </span>
+                      )}
+                      {outlet && (
+                        <span
+                          className="text-xs"
+                          style={{
+                            color: "var(--foreground)",
+                            opacity: 0.4,
+                          }}
+                        >
+                          — {outlet}
+                        </span>
+                      )}
+                    </div>
+                  </motion.li>
+                );
+              })}
             </ul>
           ) : loaded && error ? (
             <p
