@@ -195,10 +195,9 @@ export default function LatestNewsSection({
           style={{ background: "var(--surface)" }}
         >
           <div
-            className="absolute inset-0 bg-cover bg-center opacity-20"
+            className="absolute inset-0 bg-cover bg-center opacity-40"
             style={{
               backgroundImage: "url(/images/bamboo.jpg)",
-              filter: "grayscale(100%)",
             }}
           />
           <p
