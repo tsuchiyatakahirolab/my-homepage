@@ -106,7 +106,7 @@ export default function HeroSection({ lang, theme, timeOfDay }: HeroSectionProps
             className="heading-serif max-w-lg text-base leading-relaxed sm:text-lg lg:text-xl"
             style={{ color: "var(--foreground)", opacity: 0.8 }}
           >
-            &ldquo;Decoding the complexities of global society
+            &ldquo;Decoding the complexities of global society{" "}
             <br className="hidden lg:inline" />
             through the lens of Intelligence.&rdquo;
           </p>
