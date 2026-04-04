@@ -42,14 +42,16 @@ export default function ResearchSection({ lang, theme }: ResearchSectionProps) {
           initial={{ opacity: 0, x: -30 }}
           animate={isInView ? { opacity: 1, x: 0 } : { opacity: 0, x: -30 }}
           transition={{ duration: 0.8 }}
-          className="relative mb-4 flex aspect-square w-1/2 mx-auto items-center justify-center overflow-hidden sm:w-1/2 lg:mx-0 lg:w-auto lg:mb-0 lg:aspect-auto lg:min-h-[400px] lg:flex-[2]"
+          className="group relative mb-4 flex aspect-square w-1/2 mx-auto items-center justify-center overflow-hidden sm:w-1/2 lg:mx-0 lg:w-auto lg:mb-0 lg:aspect-auto lg:min-h-[400px] lg:flex-[2]"
           style={{ background: "var(--surface)" }}
         >
           <div
-            className="absolute inset-0 bg-cover bg-center opacity-80"
-            style={{
-              backgroundImage: "url(/images/gallery.png)",
-            }}
+            className="absolute inset-0 bg-cover bg-center transition-all duration-700 grayscale contrast-[1.1] group-hover:grayscale-0 group-hover:contrast-100"
+            style={{ backgroundImage: "url(/images/gallery.png)" }}
+          />
+          <div
+            className="absolute inset-0 transition-opacity duration-700 group-hover:opacity-0"
+            style={{ background: "var(--overlay)" }}
           />
         </motion.div>
 

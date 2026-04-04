@@ -108,11 +108,10 @@ export default function ExpertiseSection({ lang, theme }: ExpertiseSectionProps)
                   src={area.image}
                   alt={area.title}
                   fill
-                  className="object-cover transition-transform duration-700 group-hover:scale-105"
-                  style={{ filter: "grayscale(100%) contrast(1.1)" }}
+                  className="object-cover transition-all duration-700 group-hover:scale-105 grayscale contrast-[1.1] group-hover:grayscale-0 group-hover:contrast-100"
                 />
                 <div
-                  className="absolute inset-0"
+                  className="absolute inset-0 transition-opacity duration-700 group-hover:opacity-0"
                   style={{ background: "var(--overlay)" }}
                 />
               </div>

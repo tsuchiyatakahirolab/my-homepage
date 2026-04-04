@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import { useState } from "react";
 import SectionWrapper from "./SectionWrapper";
 import type { Theme, Lang } from "@/app/page";
 
@@ -43,6 +44,7 @@ export default function ProfileSection({ lang, theme }: ProfileSectionProps) {
   const isDark = theme === "black";
   const affiliations = lang === "en" ? AFFILIATIONS_EN : AFFILIATIONS_JP;
   const degrees = lang === "en" ? DEGREES_EN : DEGREES_JP;
+  const [hovered, setHovered] = useState(false);
 
   return (
     <SectionWrapper
@@ -51,14 +53,21 @@ export default function ProfileSection({ lang, theme }: ProfileSectionProps) {
     >
       <div className="mx-auto flex min-h-screen max-w-7xl flex-col items-center justify-center gap-8 px-6 py-16 sm:gap-12 sm:py-24 lg:flex-row lg:gap-12 lg:px-12 lg:pt-20 lg:pb-10">
         {/* Photo */}
-        <div className="relative flex-shrink-0">
+        <div
+          className="relative flex-shrink-0"
+          onMouseEnter={() => setHovered(true)}
+          onMouseLeave={() => setHovered(false)}
+        >
           <div className="relative h-[280px] w-[210px] overflow-hidden sm:h-[400px] sm:w-[300px] lg:h-[440px] lg:w-[330px]">
             <Image
               src="/images/profile.jpg"
               alt="TSUCHIYA Takahiro"
               fill
               className="object-cover"
-              style={{ filter: "grayscale(80%) contrast(1.05)" }}
+              style={{
+                filter: hovered ? "none" : "grayscale(80%) contrast(1.05)",
+                transition: "filter 0.7s",
+              }}
             />
           </div>
         </div>
