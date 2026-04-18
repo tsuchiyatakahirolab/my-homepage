@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { Geist } from "next/font/google";
 import { Playfair_Display } from "next/font/google";
 import "./globals.css";
+import PwaProvider from "@/pwa/PwaProvider";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -319,6 +320,7 @@ export default function RootLayout({
         </div>
 
         {children}
+        <PwaProvider />
       </body>
     </html>
   );

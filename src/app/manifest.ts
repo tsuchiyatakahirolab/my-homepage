@@ -34,5 +34,24 @@ export default function manifest(): MetadataRoute.Manifest {
         purpose: "maskable",
       },
     ],
+    screenshots: [
+      {
+        src: "/screenshots/desktop-1280x720.png",
+        sizes: "1280x720",
+        type: "image/png",
+        form_factor: "wide",
+        label: "土屋貴裕 公式サイト – デスクトップ表示",
+      },
+      {
+        src: "/screenshots/mobile-750x1334.png",
+        sizes: "750x1334",
+        type: "image/png",
+        form_factor: "narrow",
+        label: "土屋貴裕 公式サイト – モバイル表示",
+      },
+    ],
+    categories: ["education", "news", "productivity"],
+    lang: "ja",
+    dir: "ltr",
   };
 }
